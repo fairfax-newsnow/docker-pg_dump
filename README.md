@@ -12,6 +12,7 @@ Attach a target postgres container to this container and mount a volume to conta
         -e 'CRON_SCHEDULE=0 1 * * *' \      # cron job schedule
         -e PGUSER=postgres \
         -e PGPASSWORD=mysecretpassword \
+        -e PGHOST=pghost \
         --link my-postgres-container:db \   # linked container with running mongo
         istepanov/pg_dump dump-cron
 
@@ -20,5 +21,6 @@ Run backup once without cron job, use "mybackup" as backup file prefix, shell wi
     docker run -ti --rm \
         -v /path/to/target/folder:/dump \   # where to put db dumps
         -e PREFIX=mybackup \
+        -e PGHOST=pghost \
         --link my-postgres-container:db \   # linked container with running mongo
         istepanov/pg_dump dump

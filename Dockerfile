@@ -1,5 +1,4 @@
-FROM postgres:9.4
-MAINTAINER Ilya Stepanov <dev@ilyastepanov.com>
+FROM postgres:9.6
 
 RUN apt-get update && \
     apt-get install -y cron && \
