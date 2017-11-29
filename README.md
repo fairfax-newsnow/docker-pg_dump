@@ -1,4 +1,4 @@
-istepanov/pg_dump
+samuelbr/pg_dump
 ================
 
 Docker image with pg_dump running as a cron task
@@ -14,7 +14,7 @@ Attach a target postgres container to this container and mount a volume to conta
         -e PGPASSWORD=mysecretpassword \
         -e PGHOST=pghost \
         --link my-postgres-container:db \   # linked container with running mongo
-        istepanov/pg_dump dump-cron
+        samuelbr/pg_dump dump-cron
 
 Run backup once without cron job, use "mybackup" as backup file prefix, shell will ask for password:
 
@@ -23,4 +23,4 @@ Run backup once without cron job, use "mybackup" as backup file prefix, shell wi
         -e PREFIX=mybackup \
         -e PGHOST=pghost \
         --link my-postgres-container:db \   # linked container with running mongo
-        istepanov/pg_dump dump
+        samuelbr/pg_dump dump
