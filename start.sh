@@ -14,7 +14,7 @@ elif [[ "$COMMAND" == 'dump-cron' ]]; then
     if [[ ! -e "$LOGFIFO" ]]; then
         mkfifo "$LOGFIFO"
     fi
-    CRON_ENV="PREFIX='$PREFIX'\nPGUSER='$PGUSER'"
+    CRON_ENV="PREFIX='$PREFIX'\nPGUSER='$PGUSER'\nPGHOST='$PGHOST'"
     if [ -n "$PGPASSWORD" ]; then
         CRON_ENV="$CRON_ENV\nPGPASSWORD='$PGPASSWORD'"
     fi
