@@ -1,4 +1,4 @@
-samuelbr/pg_dump
+newsnowio/pg_dump
 ================
 
 Docker image with pg_dump
