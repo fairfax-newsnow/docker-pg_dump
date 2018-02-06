@@ -1,16 +1,9 @@
-FROM postgres:9.6
+FROM postgres:9.4
 
-RUN apt-get update && \
-    apt-get install -y cron && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-ADD dump.sh /dump.sh
-RUN chmod +x /dump.sh
-
-ADD start.sh /start.sh
-RUN chmod +x /start.sh
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 VOLUME /dump
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD [""]

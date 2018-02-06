@@ -1,26 +1,15 @@
 samuelbr/pg_dump
 ================
 
-Docker image with pg_dump running as a cron task
+Docker image with pg_dump
 
 ### Usage
 
-Attach a target postgres container to this container and mount a volume to container's `/dump` folder. Backups will appear in this volume. Optionally set up cron job schedule (default is `0 1 * * *` - runs every day at 1:00 am).
-
-    docker run -d \
-        -v /path/to/target/folder:/dump \   # where to put db dumps
-        -e 'CRON_SCHEDULE=0 1 * * *' \      # cron job schedule
-        -e PGUSER=postgres \
-        -e PGPASSWORD=mysecretpassword \
-        -e PGHOST=pghost \
-        --link my-postgres-container:db \   # linked container with running mongo
-        samuelbr/pg_dump dump-cron
-
-Run backup once without cron job, use "mybackup" as backup file prefix, shell will ask for password:
+Run backup use "mybackup" as backup file prefix, shell will ask for password:
 
     docker run -ti --rm \
         -v /path/to/target/folder:/dump \   # where to put db dumps
-        -e PREFIX=mybackup \
-        -e PGHOST=pghost \
-        --link my-postgres-container:db \   # linked container with running mongo
-        samuelbr/pg_dump dump
+        -e PREFIX=mybackup \                # application database instance identifier
+        -e PGHOST=pghost \                  # database hostname 
+        -e PGUSER=dbadmin \
+        newsnowio/pg_dump:9.4 dump          # make sure you run with same postgresql version

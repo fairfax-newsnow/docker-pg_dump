@@ -2,6 +2,10 @@
 
 set -e
 
+COMMAND=${1:-dump}
+PREFIX=${PREFIX:-dump}
+PGUSER=${PGUSER:-dbadmin}
+
 echo "Job started: $(date)"
 
 DATE=$(date +%Y%m%d_%H%M%S)
