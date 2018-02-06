@@ -15,6 +15,6 @@ SED="gsed"
 for version in 9.3 9.4 9.5 9.6 10
 do
   ${SED} -i "/FROM postgres:*/c\FROM postgres:$version" Dockerfile
-  docker build -t ${IMAGE}:${version} .
+  docker build --no-cache -t ${IMAGE}:${version} .
   docker push ${IMAGE}:${version}
 done
