@@ -2,14 +2,29 @@
 
 set -e
 
+Usage () {
+  echo "Usage: $0 [dump|restore] [restore_file]"
+}
+
+# main
+if [ "$#" -ne 1 ]; then
+    echo "need at least one parameter"
+    Usage
+    exit
+fi
+
+cmd=$1
 PGUSER=${PGUSER:-dbadmin}
 
-echo "Job started: $(date)"
-
-DATE=$(date +%Y%m%d_%H%M%S)
-FILE="/dump/${PGHOST}-${PGDATABASE}-${DATE}.sql"
-
-pg_dump -h "${PGHOST}" -U "${PGUSER}" -d ${PGDATABASE} -f "${FILE}"
-gzip "${FILE}"
-
-echo "Job finished: $(date)"
+case $cmd in
+  dump )
+    exec /dump.sh
+    ;;
+  restore )
+    exec /restore.sh
+    ;;
+  * )
+    echo "wrong command, exist ..."
+    Usage
+    exit
+esac
