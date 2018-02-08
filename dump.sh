@@ -9,6 +9,10 @@ echo "Job started: $(date)"
 #                              plain text (default))
 PGOPTION="--no-owner --no-privileges -Fc"
 
+if [ ${EXCLUDE} != "" ]; then
+  PGOPTION="${PGOPTION} --exclude-table=${EXCLUDE}"
+fi
+
 DATE=$(date +%Y%m%d)
 FILE="/dump/${PGHOST}-${PGDATABASE}-${DATE}"
 
